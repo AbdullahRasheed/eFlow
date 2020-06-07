@@ -5,6 +5,8 @@ import me.abdullah.eflow.objects.Point;
 
 public class FlowPathfinder {
 
+    // TODO WORK IN PROGRESS
+
 //    private Connection c1;
 //    private Connection c2;
 //    private Point p1;

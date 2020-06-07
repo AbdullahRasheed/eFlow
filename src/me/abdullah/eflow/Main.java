@@ -8,9 +8,16 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    /**
+     * Creates the application
+     * @param primaryStage The app's stage
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
+        // Loads the FXML file
         Parent root = FXMLLoader.load(getClass().getResource("display.fxml"));
+
+        // Creates the scene and shows it
         primaryStage.setTitle("eFlows");
         primaryStage.setScene(new Scene(root, 1200, 1000));
         primaryStage.show();
