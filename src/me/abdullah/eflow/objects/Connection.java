@@ -8,14 +8,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CubicCurve;
+import javafx.scene.shape.QuadCurve;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import me.abdullah.eflow.Controller;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Connection {
 
     // Whether or not the connection is selected
     private boolean selected = false;
+
+    // List of shared connections
+    private Map<Connection, CubicCurve> connections = new HashMap<>();
 
     private Point point;
     private Circle backgroundCircle;
@@ -78,6 +85,10 @@ public class Connection {
      */
     public Point getPoint(){
         return point;
+    }
+
+    public Map<Connection, CubicCurve> getConnections(){
+        return connections;
     }
 
     /**
@@ -191,11 +202,24 @@ public class Connection {
      * @param c Connection to flow to
      */
     public void connect(Connection c){
+        // Checks for existing connections
+        if(getConnections().containsKey(c)){
+            getPoint().getPane().getChildren().remove(getConnections().get(c));
+            getConnections().remove(c);
+            c.getConnections().remove(this);
+
+            c.setSelected(false);
+            setSelected(false);
+            return;
+        }
+
         // Defining pivot points for flow
-        double startX = this.overlayCircle.getCenterX();
-        double startY = this.overlayCircle.getCenterY();
-        double endX = c.getOverlayCircle().getCenterX();
-        double endY = c.getOverlayCircle().getCenterY();
+        Connection left = c.getPoint().getLabel().getLayoutX() > this.getPoint().getLabel().getLayoutX() ? this : c;
+        Connection right = left == this ? c : this;
+        double startX = right.getPoint().getLabel().getLayoutX() - 5;
+        double startY = right.getOverlayCircle().getCenterY();
+        double endX = left.getOverlayCircle().getCenterX();
+        double endY = left.getOverlayCircle().getCenterY();
         double x1 = (endX - startX)/2 + startX;
         double y1 = (endY - startY)/4 + startY;
         double x2 = x1;
@@ -207,6 +231,10 @@ public class Connection {
         curve.setFill(null);
         // Adds the curve
         point.getPane().getChildren().add(curve);
+
+        // Stores the connection in the points
+        getConnections().put(c, curve);
+        c.getConnections().put(this, curve);
 
         // Deselects the two points
         c.setSelected(false);
