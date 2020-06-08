@@ -221,9 +221,9 @@ public class Connection {
         double endX = left.getOverlayCircle().getCenterX();
         double endY = left.getOverlayCircle().getCenterY();
         double x1 = (endX - startX)/2 + startX;
-        double y1 = (endY - startY)/4 + startY;
+        double y1 = startY;
         double x2 = x1;
-        double y2 = y1 + (endY - startY)/4;
+        double y2 = endY;
         // Defining the curve's attributes
         CubicCurve curve = new CubicCurve(startX, startY, x1, y1, x2, y2, endX, endY);
         curve.setStrokeWidth(1);
