@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.CubicCurve;
-import javafx.scene.shape.QuadCurve;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import me.abdullah.eflow.Controller;
@@ -187,7 +186,7 @@ public class Connection {
         }
 
         // Checks for a selected connection from another column to flow to
-        for (Column column : Controller.getColumns()) {
+        for (Column column : Controller.getCurrentPage().getColumns()) {
             for (Point p : column.getPoints()) {
                 if(p.equals(this.getPoint())) continue;
                 if(p.getConnection().isSelected()) {

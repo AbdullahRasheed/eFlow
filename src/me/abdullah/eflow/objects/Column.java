@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import me.abdullah.eflow.style.CSS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class Column {
 
         // Creating the points field
         textField = new TextField();
+        CSS.applyDefaultFieldCSS(textField);
         textField.setLayoutX(50 + column*200);
         textField.setLayoutY(150);
         pane.getChildren().add(textField);

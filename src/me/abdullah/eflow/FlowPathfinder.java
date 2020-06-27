@@ -1,5 +1,6 @@
 package me.abdullah.eflow;
 
+import me.abdullah.eflow.objects.Column;
 import me.abdullah.eflow.objects.Connection;
 import me.abdullah.eflow.objects.Point;
 
@@ -25,5 +26,12 @@ public class FlowPathfinder {
 //        double bottomY = lower.getSize().getMinY();
 //        double median = topY + (bottomY-topY)/2;
 //
+//    }
+//
+//    private Point yConflict(Column column, double y){
+//        for (Point point : column.getPoints()) {
+//            if(y >= point.getSize().getMinY() && y <= point.getSize().getMinY() + point.getSize().getHeight()) return point;
+//        }
+//        return null;
 //    }
 }

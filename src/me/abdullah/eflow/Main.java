@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,10 +20,9 @@ public class Main extends Application {
 
         // Creates the scene and shows it
         primaryStage.setTitle("eFlows");
-        primaryStage.setScene(new Scene(root, 1200, 1000));
+        primaryStage.setScene(new Scene(root, 1200, 1000, false, SceneAntialiasing.BALANCED));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

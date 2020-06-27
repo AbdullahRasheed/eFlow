@@ -13,7 +13,7 @@
                <children>
                   <Label fx:id="newColumn" layoutX="50.0" layoutY="50.0" text="+">
                      <font>
-                        <Font name="Quicksand-Light" size="67.0" />
+                        <Font name="Ebrima Bold" size="67.0" />
                      </font>
                   </Label>
                </children>

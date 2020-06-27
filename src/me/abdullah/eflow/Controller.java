@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import me.abdullah.eflow.objects.Column;
+import me.abdullah.eflow.page.Page;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,10 +21,11 @@ public class Controller implements Initializable {
     public AnchorPane controlPane;
     public Label newColumn;
 
-    public int column = 0;
-
     // List of all columns
-    private static List<Column> columns = new ArrayList<>();
+    private static List<Page> pages = new ArrayList<>();
+    private static Page currentPage;
+
+    public static String TEXTFIELD_STYLESHEET;
 
     /**
      * Initializes the application
@@ -32,13 +34,17 @@ public class Controller implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        TEXTFIELD_STYLESHEET = getClass().getResource("textfield_style.css").toExternalForm();
+
+        currentPage = new Page(controlPane);
+        pages.add(currentPage);
+
         // Adds new column
         newColumn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 // Creates a new column and adds it to the list
-                columns.add(new Column(controlPane, column));
-                column++;
+                currentPage.addColumn();
                 newColumn.setLayoutX(newColumn.getLayoutX() + 200);
             }
         });
@@ -47,7 +53,15 @@ public class Controller implements Initializable {
     /**
      * @return Returns an ordered list of all columns
      */
-    public static List<Column> getColumns(){
-        return columns;
+    public static List<Page> getPages(){
+        return pages;
+    }
+
+    public static Page getCurrentPage(){
+        return currentPage;
+    }
+
+    public static void setCurrentPage(Page page){
+        currentPage = page;
     }
 }
