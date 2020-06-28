@@ -22,6 +22,8 @@ public class Main extends Application {
         primaryStage.setTitle("eFlows");
         primaryStage.setScene(new Scene(root, 1200, 1000, false, SceneAntialiasing.BALANCED));
         primaryStage.show();
+
+        root.requestFocus();
     }
 
     public static void main(String[] args) {

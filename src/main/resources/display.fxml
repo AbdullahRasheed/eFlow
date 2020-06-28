@@ -13,7 +13,7 @@
         <content>
           <AnchorPane fx:id="controlPane" minHeight="0.0" minWidth="0.0">
                <children>
-                  <Label fx:id="newColumn" layoutX="207.0" layoutY="50.0" text="+">
+                  <Label fx:id="newColumn" layoutX="200.0" layoutY="50.0" text="+">
                      <font>
                         <Font name="Ebrima Bold" size="67.0" />
                      </font>

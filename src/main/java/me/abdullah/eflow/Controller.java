@@ -2,9 +2,6 @@ package me.abdullah.eflow;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXSlider;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -59,6 +56,7 @@ public class Controller implements Initializable {
                 int index = (int)pageView.getSelectionModel().getSelectedIndices().get(0);
                 PageSwitcher.switchPage(currentPage, pages.get(index), controlPane);
                 currentPage = pages.get(index);
+                newColumn.setLayoutX(200 * (currentPage.getColumns().size() + 1));
             }
         });
 
@@ -69,6 +67,15 @@ public class Controller implements Initializable {
                 // Creates a new column and adds it to the list
                 currentPage.addColumn(newColumn.getLayoutX(), newColumn.getLayoutY() + 100);
                 newColumn.setLayoutX(newColumn.getLayoutX() + 200);
+            }
+        });
+
+        addPageButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                String pageName = "Page " + (pages.size() + 1);
+                pages.add(new Page(controlPane, pageName));
+                pageView.getItems().add(pageName);
             }
         });
     }
