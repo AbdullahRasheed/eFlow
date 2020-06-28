@@ -21,17 +21,18 @@ public class Column {
     /**
      * Initializes the column within the given AnchorPane
      * @param pane The pane to create the column in
-     * @param column The number column
+     * @param x The x value of the newColumn
+     * @param y The y value: newColumn + 150
      */
-    public Column(AnchorPane pane, int column){
+    public Column(AnchorPane pane, double x, double y){
         // Defining the points list
         points = new ArrayList<>();
 
         // Creating the points field
         textField = new TextField();
         CSS.applyDefaultFieldCSS(textField);
-        textField.setLayoutX(50 + column*200);
-        textField.setLayoutY(150);
+        textField.setLayoutX(x);
+        textField.setLayoutY(y);
         pane.getChildren().add(textField);
 
         // Localizing its actions (to create a point)

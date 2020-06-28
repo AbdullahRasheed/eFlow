@@ -6,6 +6,7 @@ public class PageSwitcher {
 
     public static void switchPage(Page from, Page to, AnchorPane pane){
         from.storeNodes();
-        pane.getChildren().setAll(to.getNodes());
+        pane.getChildren().clear();
+        pane.getChildren().addAll(to.getNodes());
     }
 }

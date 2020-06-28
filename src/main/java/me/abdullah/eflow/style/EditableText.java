@@ -13,6 +13,10 @@ public class EditableText {
 
     private Text label;
     private Point point;
+
+    private Runnable edit = null;
+    private Runnable complete = null;
+
     public EditableText(double x, double y, String s, Point point){
         this.point = point;
 
@@ -37,13 +41,20 @@ public class EditableText {
         });
     }
 
+    public void setOnEditStart(Runnable runnable){
+        edit = runnable;
+    }
+
+    public void setOnEditComplete(Runnable runnable){
+        complete = runnable;
+    }
+
     /**
      * Opens a textfield to edit the point
      */
     public void editPoint(){
         // Hides the label and connection
         label.setVisible(false);
-        point.getConnection().setVisibile(false);
 
         // Creates the edit textfield and defines its attributes
         TextField labelEdit = new TextField();
@@ -54,6 +65,10 @@ public class EditableText {
 
         // Adds the textfield
         point.getPane().getChildren().add(labelEdit);
+        labelEdit.requestFocus();
+        labelEdit.end();
+
+        if(edit != null) edit.run();
 
         // Edit event
         labelEdit.setOnAction(new EventHandler<ActionEvent>() {
@@ -64,12 +79,11 @@ public class EditableText {
 
                 // Adjusting visibility and positioning of points and connections
                 label.setVisible(true);
-                point.getColumn().adjustPositions(point);
-                point.getConnection().setVisibile(true);
-                point.getConnection().updatePositions();
 
                 // Removes the edit textfield
                 point.getPane().getChildren().remove(labelEdit);
+
+                if(complete != null) complete.run();
             }
         });
     }

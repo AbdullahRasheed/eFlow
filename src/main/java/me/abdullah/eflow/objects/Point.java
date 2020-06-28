@@ -30,6 +30,23 @@ public class Point {
 
         this.editableText = new EditableText(textField.getLayoutX(), textField.getLayoutY(), text, this);
 
+        editableText.setOnEditStart(new Runnable() {
+            @Override
+            public void run() {
+                connection.setVisibile(false);
+            }
+        });
+
+        Point p = this;
+        editableText.setOnEditComplete(new Runnable() {
+            @Override
+            public void run() {
+                column.adjustPositions(p);
+                connection.setVisibile(true);
+                connection.updatePositions();
+            }
+        });
+
         // Moving the column's textfield down
         textField.setLayoutY(editableText.getLabel().getLayoutY() + getSize().getHeight() + 50);
         textField.setText("");

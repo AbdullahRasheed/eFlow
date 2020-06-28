@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,17 +13,17 @@
         <content>
           <AnchorPane fx:id="controlPane" minHeight="0.0" minWidth="0.0">
                <children>
-                  <Label fx:id="newColumn" layoutX="50.0" layoutY="50.0" text="+">
+                  <Label fx:id="newColumn" layoutX="207.0" layoutY="50.0" text="+">
                      <font>
                         <Font name="Ebrima Bold" size="67.0" />
                      </font>
                   </Label>
-                  <JFXSlider fx:id="pageSlider" layoutX="50.0" layoutY="21.0" prefHeight="29.0" prefWidth="329.0" />
-                  <JFXButton fx:id="addPageButton" layoutX="398.0" layoutY="13.0" prefHeight="45.0" prefWidth="112.0" stylesheets="@button.css" text="Add Page">
+                  <JFXButton fx:id="addPageButton" layoutX="8.0" layoutY="174.0" prefHeight="45.0" prefWidth="112.0" stylesheets="@button.css" text="Add Page">
                      <font>
                         <Font name="Quicksand-Bold" size="12.0" />
                      </font>
                   </JFXButton>
+                  <JFXListView fx:id="pageView" editable="true" layoutX="4.0" layoutY="4.0" prefHeight="156.0" prefWidth="120.0" />
                </children>
             </AnchorPane>
         </content>
