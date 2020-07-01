@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EFlowParser {
@@ -25,11 +26,11 @@ public class EFlowParser {
 
     public void load(){
         try {
-            Controller.pages.clear();
+            controller.clearPages();
             for (Page page : parsePages()) {
                 controller.addPage(page);
             }
-            Controller.setCurrentPage(Controller.pages.get(0));
+            controller.setCurrentPage(Controller.pages.get(0));
             PageSwitcher.loadPage(Controller.getCurrentPage(), controller.controlPane);
         }catch (IOException e){
             e.printStackTrace();
@@ -39,7 +40,7 @@ public class EFlowParser {
     public Point parsePoint(String s, Column column){
         String[] valArray = s.split(Character.toString('"'));
         String[] spacedArray = s.split(" ");
-        String vals = valArray[valArray.length - 1];
+        String vals = valArray[valArray.length - 1].substring(1);
 
         String text = betweenFinal(s, '"', '"');
         String connections = betweenFinal(vals, '[', ']');
@@ -47,6 +48,7 @@ public class EFlowParser {
         double y = Double.parseDouble(spacedArray[spacedArray.length-1]);
         Point point = column.createPoint(text, x, y);
         for (String s1 : connections.split(";")) {
+            if(s1.equals("") || s1.equals(null)) continue;
             int[] coords = new int[2];
             String[] coordsAsString = s1.split(" ");
             for(int i = 0; i < coordsAsString.length; i++){
@@ -88,6 +90,7 @@ public class EFlowParser {
 
     public void reshapePage(Page page){
         page.storeNodes();
+        page.getNodes().addAll(new ArrayList<>(Controller.DEFAULT_NODES));
         page.setPane(controller.controlPane);
     }
 
@@ -99,6 +102,6 @@ public class EFlowParser {
             if(chars[i] == c1) i1 = Math.min(i1, i);
             if(chars[i] == c2) i2 = i;
         }
-        return s.substring(i1, i2);
+        return s.substring(i1 + 1, i2);
     }
 }

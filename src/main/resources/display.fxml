@@ -18,12 +18,27 @@
                         <Font name="Ebrima Bold" size="67.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="addPageButton" layoutX="8.0" layoutY="174.0" prefHeight="45.0" prefWidth="112.0" stylesheets="@button.css" text="Add Page">
+                  <JFXButton fx:id="addPageButton" layoutX="4.0" layoutY="174.0" prefHeight="45.0" prefWidth="120.0" stylesheets="@button.css" text="Add Page">
                      <font>
                         <Font name="Quicksand-Bold" size="12.0" />
                      </font>
                   </JFXButton>
                   <JFXListView fx:id="pageView" editable="true" layoutX="4.0" layoutY="4.0" prefHeight="156.0" prefWidth="120.0" />
+                  <JFXButton fx:id="loadButton" layoutX="4.0" layoutY="300.0" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #ff7675;" stylesheets="@button.css" text="Load">
+                     <font>
+                        <Font name="Quicksand-Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="downloadEflowButton" layoutX="4.0" layoutY="341.0" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #74b9ff;" stylesheets="@button.css" text="Download eflow" wrapText="true">
+                     <font>
+                        <Font name="Quicksand-Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="downloadPdfButton" layoutX="4.0" layoutY="374.0" prefHeight="31.0" prefWidth="120.0" style="-fx-background-color: #74b9ff;" stylesheets="@button.css" text="Download PDF" wrapText="true">
+                     <font>
+                        <Font name="Quicksand-Bold" size="12.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </AnchorPane>
         </content>

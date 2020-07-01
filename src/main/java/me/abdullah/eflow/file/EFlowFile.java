@@ -50,7 +50,7 @@ public class EFlowFile {
 
             connections += page.getColumns().indexOf(column) + " " + column.getPoints().indexOf(p) + ";";
         }
-        return '"' + point.getLabel().getText() + '"' + " [" + connections.substring(0, connections.length() - 1) + "] " + point.getLabel().getLayoutX() + " " + point.getLabel().getLayoutY();
+        return '"' + point.getLabel().getText() + '"' + " [" + connections + "] " + point.getLabel().getLayoutX() + " " + point.getLabel().getLayoutY();
     }
 
     public static String columnAsString(Column column){
