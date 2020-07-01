@@ -103,4 +103,8 @@ public class Column {
     public AnchorPane getPane(){
         return pane;
     }
+
+    public void setPane(AnchorPane pane){
+        this.pane = pane;
+    }
 }

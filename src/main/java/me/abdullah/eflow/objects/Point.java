@@ -10,7 +10,6 @@ import java.util.List;
 public class Point {
 
     private EditableText editableText;
-    private AnchorPane pane;
     private Connection connection;
     private Column column;
 
@@ -20,7 +19,6 @@ public class Point {
      * @param column Point's column
      */
     public Point(String text, double x, double y, Column column){
-        this.pane = column.getPane();
         this.column = column;
 
         this.editableText = new EditableText(x, y, text, this);
@@ -65,7 +63,7 @@ public class Point {
      * @return The point's pane
      */
     public AnchorPane getPane(){
-        return pane;
+        return column.getPane();
     }
 
     /**

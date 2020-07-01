@@ -50,5 +50,8 @@ public class Page {
 
     public void setPane(AnchorPane pane){
         this.pane = pane;
+        for (Column column : columns) {
+            column.setPane(pane);
+        }
     }
 }

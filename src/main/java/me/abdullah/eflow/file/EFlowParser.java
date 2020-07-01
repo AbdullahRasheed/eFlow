@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class EFlowParser {
@@ -82,6 +81,11 @@ public class EFlowParser {
             while(!(column = reader.readLine()).equals("-")){
                 parseColumn(column, page);
             }
+            for (Column column1 : page.getColumns()) {
+                for (Point point : column1.getPoints()) {
+                    point.getConnection().runQueues();
+                }
+            }
             reshapePage(page);
             pages.add(page);
         }
@@ -95,13 +99,8 @@ public class EFlowParser {
     }
 
     public String betweenFinal(String s, char c1, char c2){
-        int i1 = 0;
-        int i2 = 0;
-        char[] chars = s.toCharArray();
-        for(int i = 0; i < chars.length; i++){
-            if(chars[i] == c1) i1 = Math.min(i1, i);
-            if(chars[i] == c2) i2 = i;
-        }
+        int i1 = s.indexOf(c1);
+        int i2 = s.lastIndexOf(c2);
         return s.substring(i1 + 1, i2);
     }
 }
