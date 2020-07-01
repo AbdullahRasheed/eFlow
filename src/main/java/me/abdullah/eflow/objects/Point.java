@@ -1,7 +1,6 @@
 package me.abdullah.eflow.objects;
 
 import javafx.geometry.Bounds;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import me.abdullah.eflow.style.EditableText;
@@ -11,7 +10,6 @@ import java.util.List;
 public class Point {
 
     private EditableText editableText;
-    private TextField textField;
     private AnchorPane pane;
     private Connection connection;
     private Column column;
@@ -19,16 +17,13 @@ public class Point {
     /**
      * Initializes a new Point
      * @param text Text of the point
-     * @param textField Textfield of the column
-     * @param pane Pane to add to
      * @param column Point's column
      */
-    public Point(String text, TextField textField, AnchorPane pane, Column column){
-        this.textField = textField;
-        this.pane = pane;
+    public Point(String text, double x, double y, Column column){
+        this.pane = column.getPane();
         this.column = column;
 
-        this.editableText = new EditableText(textField.getLayoutX(), textField.getLayoutY(), text, this);
+        this.editableText = new EditableText(x, y, text, this);
 
         editableText.setOnEditStart(new Runnable() {
             @Override
@@ -48,8 +43,8 @@ public class Point {
         });
 
         // Moving the column's textfield down
-        textField.setLayoutY(editableText.getLabel().getLayoutY() + getSize().getHeight() + 50);
-        textField.setText("");
+        column.getTextField().setLayoutY(editableText.getLabel().getLayoutY() + getSize().getHeight() + 50);
+        column.getTextField().setText("");
 
         // Adds the point's connection
         this.connection = new Connection(this);

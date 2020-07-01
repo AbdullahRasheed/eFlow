@@ -22,8 +22,10 @@ public class Page {
         nodes = new ArrayList<>(Controller.DEFAULT_NODES);
     }
 
-    public void addColumn(double x, double y){
-        columns.add(new Column(pane, x, y));
+    public Column addColumn(double x, double y){
+        Column column = new Column(x, y, this);
+        columns.add(column);
+        return column;
     }
 
     public List<Column> getColumns(){
@@ -42,4 +44,11 @@ public class Page {
         return name;
     }
 
+    public AnchorPane getPane(){
+        return pane;
+    }
+
+    public void setPane(AnchorPane pane){
+        this.pane = pane;
+    }
 }

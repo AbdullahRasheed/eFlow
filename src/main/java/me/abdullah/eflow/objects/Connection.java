@@ -12,7 +12,9 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import me.abdullah.eflow.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Connection {
@@ -283,5 +285,17 @@ public class Connection {
         backgroundCircle.setVisible(b);
         overlayCircle.setVisible(b);
         fillCircle.setVisible(b);
+    }
+
+    List<int[]> queueList = new ArrayList<>();
+    public void queueConnection(int[] coords){
+        queueList.add(coords);
+    }
+
+    public void runQueues(){
+        List<Column> columns = point.getColumn().getPage().getColumns();
+        for (int[] coords : queueList) {
+            connect(columns.get(coords[0]).getPoints().get(coords[1]).getConnection());
+        }
     }
 }

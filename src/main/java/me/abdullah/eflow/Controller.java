@@ -28,7 +28,7 @@ public class Controller implements Initializable {
 
 
     // List of all columns
-    private static List<Page> pages = new ArrayList<>();
+    public static List<Page> pages = new ArrayList<>();
     private static Page currentPage;
 
     public static String TEXTFIELD_STYLESHEET;
@@ -74,8 +74,7 @@ public class Controller implements Initializable {
             @Override
             public void handle(MouseEvent event) {
                 String pageName = "Page " + (pages.size() + 1);
-                pages.add(new Page(controlPane, pageName));
-                pageView.getItems().add(pageName);
+                addPage(new Page(controlPane, pageName));
             }
         });
     }

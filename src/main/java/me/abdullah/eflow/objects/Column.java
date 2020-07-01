@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import me.abdullah.eflow.page.Page;
 import me.abdullah.eflow.style.CSS;
 
 import java.util.ArrayList;
@@ -16,15 +17,20 @@ public class Column {
      */
     private List<Point> points;
 
+    private Page page;
+
     private TextField textField;
+    private AnchorPane pane;
 
     /**
      * Initializes the column within the given AnchorPane
-     * @param pane The pane to create the column in
      * @param x The x value of the newColumn
      * @param y The y value: newColumn + 150
      */
-    public Column(AnchorPane pane, double x, double y){
+    public Column(double x, double y, Page page){
+        this.pane = page.getPane();
+        this.page = page;
+
         // Defining the points list
         points = new ArrayList<>();
 
@@ -39,7 +45,7 @@ public class Column {
         textField.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                points.add(createPoint(textField.getText(), textField, pane));
+                points.add(createPoint(textField.getText()));
             }
         });
     }
@@ -55,12 +61,14 @@ public class Column {
     /**
      * Creates a point inside the column
      * @param text Point text
-     * @param field Textfield to base off of
-     * @param pane Pane to yield to
      * @return The point
      */
-    public Point createPoint(String text, TextField field, AnchorPane pane){
-        return new Point(text, field, pane, this);
+    public Point createPoint(String text){
+        return new Point(text, textField.getLayoutX(), textField.getLayoutY(), this);
+    }
+
+    public Point createPoint(String text, double x, double y){
+        return new Point(text, x, y, this);
     }
 
     /**
@@ -82,5 +90,17 @@ public class Column {
             point.getConnection().updatePositions();
             textField.setLayoutY(point.getLabel().getLayoutY() + point.getSize().getHeight() + 50);
         }
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public TextField getTextField(){
+        return textField;
+    }
+
+    public AnchorPane getPane(){
+        return pane;
     }
 }

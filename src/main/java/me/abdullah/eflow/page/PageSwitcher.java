@@ -9,4 +9,9 @@ public class PageSwitcher {
         pane.getChildren().clear();
         pane.getChildren().addAll(to.getNodes());
     }
+
+    public static void loadPage(Page page, AnchorPane pane){
+        pane.getChildren().clear();
+        pane.getChildren().addAll(page.getNodes());
+    }
 }
