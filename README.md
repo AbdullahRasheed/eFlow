@@ -1,4 +1,10 @@
 # eFlow
 A program for easier virtual flowing designed for debate events
 
-![Demo](https://i.gyazo.com/a67b4bfa663e0ef600aa5394af92e215.png)
+WORK IN PROGRESS
+
+TODO:
+  - Downloadable .eflow files
+  - Parsing and loading .eflow files
+  - Downloading flows as formatted PDFs and PNGs
+  - Flow Pathfinding for spaced connections
