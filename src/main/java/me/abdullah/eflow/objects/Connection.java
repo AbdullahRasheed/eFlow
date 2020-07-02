@@ -242,6 +242,37 @@ public class Connection {
         setSelected(false);
     }
 
+    public void certainConnect(Connection c){
+        // Defining pivot points for flow
+        Connection left = c.getPoint().getLabel().getLayoutX() > this.getPoint().getLabel().getLayoutX() ? this : c;
+        Connection right = left == this ? c : this;
+        double startX = right.getPoint().getLabel().getLayoutX() - 5;
+        double startY = right.getOverlayCircle().getCenterY();
+        double endX = left.getOverlayCircle().getCenterX();
+        double endY = left.getOverlayCircle().getCenterY();
+        double x1 = (endX - startX)/2 + startX;
+        double y1 = startY;
+        double x2 = x1;
+        double y2 = endY;
+
+        if(!getConnections().containsKey(c)) {
+            CubicCurve curve = new CubicCurve(startX, startY, x1, y1, x2, y2, endX, endY);
+            curve.setStrokeWidth(1);
+            curve.setStroke(Color.BLACK);
+            curve.setFill(null);
+
+            point.getPane().getChildren().add(curve);
+
+            // Stores the connection in the points
+            getConnections().put(c, curve);
+            c.getConnections().put(this, curve);
+        }
+
+        // Deselects the two points
+        c.setSelected(false);
+        setSelected(false);
+    }
+
     /**
      * @return The overlay circle, used for events
      */
@@ -295,7 +326,8 @@ public class Connection {
     public void runQueues(){
         List<Column> columns = point.getColumn().getPage().getColumns();
         for (int[] coords : queueList) {
-            connect(columns.get(coords[0]).getPoints().get(coords[1]).getConnection());
+            certainConnect(columns.get(coords[0]).getPoints().get(coords[1]).getConnection());
         }
+        queueList.clear();
     }
 }
